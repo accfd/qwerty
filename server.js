@@ -2,8 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 
+const path = require('path');
+
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -36,6 +38,11 @@ app.get('/api/mahasiswa', async (req, res) => {
     console.error(`Gagal tarik Nama NIM ${nim}`);
     res.json({ code: 500 });
   }
+});
+
+// Serve index.html pada route utama /
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Serve static files for local testing
