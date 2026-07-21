@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Hasil Studi & Transkrip Mahasiswa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #15803d;
+      --primary-hover: #166534;
+      --primary-light: #dcfce7;
+      --secondary-color: #d97706;
+      --secondary-hover: #b45309;
+      --bg-gradient-start: #f0fdf4;
+      --bg-gradient-end: #f8fafc;
+      --card-bg: #ffffff;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --font-outfit: 'Outfit', sans-serif;
+      --font-inter: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+
+    body {
+      font-family: var(--font-inter);
+      background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+      padding-bottom: 3rem;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      width: 45px;
+      height: 45px;
+      background-color: var(--primary-color);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 800;
+      font-family: var(--font-outfit);
+      box-shadow: 0 4px 6px -1px rgba(21, 128, 61, 0.3);
+    }
+
+    .brand-name h1 {
+      font-family: var(--font-outfit);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      letter-spacing: -0.025em;
+    }
+
+    .brand-name p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 992px) {
+      .grid {
+        grid-template-columns: 350px 1fr;
+      }
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      background-color: #fafafa;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-header h2 {
+      font-family: var(--font-outfit);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .card-header i {
+      color: var(--primary-color);
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-wrapper i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      font-family: var(--font-inter);
+      background-color: #f8fafc;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.1);
+    }
+
+    .input-helper {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-family: var(--font-outfit);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: #ffffff;
+      box-shadow: 0 4px 6px -1px rgba(21, 128, 61, 0.2);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background-color: var(--secondary-color);
+      color: #ffffff;
+      box-shadow: 0 4px 6px -1px rgba(217, 119, 6, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--secondary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-dark);
+    }
+
+    .btn-outline:hover {
+      background-color: #f1f5f9;
+      border-color: var(--text-muted);
+    }
+
+    .btn-print {
+      background-color: #0284c7;
+      color: white;
+      box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.2);
+    }
+
+    .btn-print:hover {
+      background-color: #0369a1;
+      transform: translateY(-1px);
+    }
+
+    .status-container {
+      margin-bottom: 1.5rem;
+    }
+
+    .alert {
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      animation: slideIn 0.3s ease;
+    }
+
+    .alert-info {
+      background-color: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e40af;
+    }
+
+    .alert-info i {
+      color: #3b82f6;
+    }
+
+    .alert-danger {
+      background-color: #fef2f2;
+      border: 1px solid #fee2e2;
+      color: #991b1b;
+    }
+
+    .alert-danger i {
+      color: #ef4444;
+    }
+
+    .loader {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      gap: 1rem;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid var(--primary-light);
+      border-bottom-color: var(--primary-color);
+      border-radius: 50%;
+      display: inline-block;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+
+    .loader p {
+      font-family: var(--font-outfit);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--primary-color);
+      text-align: center;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .summary-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .summary-icon {
+      width: 48px;
+      height: 48px;
+      background-color: var(--primary-light);
+      color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .summary-icon.orange {
+      background-color: #fef3c7;
+      color: var(--secondary-color);
+    }
+
+    .summary-info h3 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .summary-info p {
+      font-family: var(--font-outfit);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background-color: var(--card-bg);
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background-color: #f8fafc;
+      padding: 1rem;
+      font-family: var(--font-outfit);
+      font-weight: 600;
+      color: var(--text-dark);
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-dark);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .badge-grade {
+      background-color: var(--primary-light);
+      color: var(--primary-color);
+    }
+
+    .badge-grade-low {
+      background-color: #fee2e2;
+      color: var(--danger);
+    }
+
+    .result-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .print-header {
+      display: none;
+      text-align: center;
+      margin-bottom: 2rem;
+      border-bottom: 3px double var(--primary-color);
+      padding-bottom: 1.5rem;
+    }
+
+    .print-logo {
+      font-size: 2rem;
+      color: var(--primary-color);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-outfit);
+    }
+
+    .print-title {
+      font-family: var(--font-outfit);
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+
+    .print-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .student-meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    .student-meta p {
+      margin-bottom: 0.25rem;
+    }
+
+    .student-meta strong {
+      color: var(--text-dark);
+    }
+
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .empty-state i {
+      font-size: 3rem;
+      color: var(--border-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .empty-state h3 {
+      font-family: var(--font-outfit);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(10px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        color: #000000;
+        padding: 0;
+        font-size: 11pt;
+      }
+
+      header,
+      .no-print,
+      .card-header,
+      .form-container,
+      .result-actions,
+      .input-helper {
+        display: none !important;
+      }
+
+      .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .grid {
+        display: block;
+      }
+
+      .card {
+        border: none;
+        box-shadow: none;
+        background: transparent;
+      }
+
+      .card-body {
+        padding: 0;
+      }
+
+      .print-header {
+        display: block;
+      }
+
+      .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+        page-break-inside: avoid;
+      }
+
+      .summary-card {
+        border: 1px solid #000;
+        box-shadow: none;
+        background: transparent !important;
+      }
+
+      .summary-icon {
+        display: none !important;
+      }
+
+      .table-container {
+        border: 1px solid #000000;
+        border-radius: 0;
+        box-shadow: none;
+        page-break-inside: auto;
+      }
+
+      table {
+        font-size: 10pt;
+      }
+
+      th {
+        border-bottom: 2px solid #000000;
+        background-color: #f1f5f9 !important;
+        color: #000000;
+      }
+
+      td {
+        border-bottom: 1px solid #e2e8f0;
+        color: #000000;
+      }
+
+      tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+      }
+
+      .badge {
+        border: 1px solid #ccc;
+        background-color: transparent !important;
+        color: #000000 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="brand-logo">UA</div>
+      <div class="brand-name">
+        <h1>PORTAL HASIL STUDI</h1>
+        <p>Universitas Andalas</p>
+      </div>
+    </div>
+    <div class="no-print">
+      <button class="btn btn-outline" onclick="clearStoredData()"><i class="fa-solid fa-trash-can"></i> Hapus Cache
+        Sesi</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+
+      <div class="card no-print form-container">
+        <div class="card-header">
+          <i class="fa-solid fa-sliders"></i>
+          <h2>Konfigurasi Data</h2>
+        </div>
+        <div class="card-body">
+          <form id="khsForm" onsubmit="event.preventDefault();">
+
+            <div class="form-group">
+              <label for="bearerToken">Bearer Token</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-key"></i>
+                <input type="password" id="bearerToken" class="form-control" placeholder="Masukkan Token JWT..."
+                  required autocomplete="off">
+              </div>
+              <p class="input-helper">Token Authorization dari portal sia.portal2.unand.ac.id</p>
+            </div>
+
+            <div class="form-group">
+              <label for="mhsNim">NIM Mahasiswa</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-id-card"></i>
+                <input type="text" id="mhsNim" class="form-control" placeholder="Contoh: 2411522001" required>
+              </div>
+              <p class="input-helper">2 digit pertama menunjukkan tahun angkatan masuk.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="semId">Kode Semester Target</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-calendar-days"></i>
+                <input type="text" id="semId" class="form-control" placeholder="Contoh: 20252" required>
+              </div>
+              <p class="input-helper">Format: [Tahun][Kode Semester]. Contoh: 20252 (2025 Genap)</p>
+            </div>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" onclick="fetchSingleSemester()">
+                <i class="fa-solid fa-magnifying-glass"></i> Cek KHS Semester Ini
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="generateTranscript()">
+                <i class="fa-solid fa-graduation-cap"></i> Generate Transkrip Lengkap
+              </button>
+              <button type="button" class="btn btn-outline" onclick="generateLeaderboard()">
+                <i class="fa-solid fa-trophy"></i> Generate Ranking Angkatan 2024
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+
+          <div class="print-header">
+            <div class="print-logo">UNIVERSITAS ANDALAS</div>
+            <div class="print-title" id="printReportTitle">TRANSKRIP NILAI AKADEMIK SEMENTARA</div>
+            <div class="print-subtitle">Dokumen ini dicetak otomatis secara mandiri melalui aplikasi Portal KHS</div>
+          </div>
+
+          <div id="studentMetaBlock" style="display: none;">
+            <div class="student-meta">
+              <div>
+                <p><strong>Nama Mahasiswa:</strong> <span id="metaNama">-</span></p>
+                <p><strong>NIM:</strong> <span id="metaNim">-</span></p>
+                <p><strong>Tahun Angkatan:</strong> <span id="metaAngkatan">-</span></p>
+              </div>
+              <div style="text-align: right;" class="screen-only-align">
+                <p><strong>Tipe Laporan:</strong> <span id="metaTipeLaporan">-</span></p>
+                <p><strong>Semester Target:</strong> <span id="metaSemesterTarget">-</span></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-container" id="alertContainer"></div>
+
+          <div class="loader" id="pageLoader">
+            <span class="spinner"></span>
+            <p id="loaderMessage">Mengambil data dari API...</p>
+          </div>
+
+          <div id="resultContent" style="display: none;">
+
+            <div class="summary-grid" id="summaryGrid">
+            </div>
+
+            <div class="table-container">
+              <table id="gradesTable">
+                <thead id="gradesTableHead">
+                </thead>
+                <tbody id="gradesTableBody">
+                </tbody>
+              </table>
+            </div>
+
+            <div class="result-actions no-print">
+              <button class="btn btn-print" onclick="window.print()">
+                <i class="fa-solid fa-print"></i> Cetak / Download PDF
+              </button>
+            </div>
+
+          </div>
+
+          <div class="empty-state" id="emptyState">
+            <i class="fa-solid fa-folder-open"></i>
+            <h3>Tidak Ada Data Ditampilkan</h3>
+            <p>Silakan isi konfigurasi data di panel sebelah kiri dan klik tombol aksi untuk memuat data hasil studi.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const BACKEND_URL_KHS = '/api/khs';
+    const BACKEND_URL_MHS = '/api/mahasiswa';
+
+    const GRADE_WEIGHTS = {
+      'A': 4.00, 'A-': 3.75, 'B+': 3.50, 'B': 3.00, 'B-': 2.75,
+      'C+': 2.50, 'C': 2.00, 'D': 1.00, 'E': 0.00
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('bearerToken')) document.getElementById('bearerToken').value = localStorage.getItem('bearerToken');
+      if (localStorage.getItem('mhsNim')) document.getElementById('mhsNim').value = localStorage.getItem('mhsNim');
+      if (localStorage.getItem('semId')) document.getElementById('semId').value = localStorage.getItem('semId');
+    });
+
+    function saveConfig(token, nim, semId) {
+      localStorage.setItem('bearerToken', token);
+      localStorage.setItem('mhsNim', nim);
+      localStorage.setItem('semId', semId);
+    }
+
+    function clearStoredData() {
+      localStorage.clear();
+      document.getElementById('bearerToken').value = '';
+      document.getElementById('mhsNim').value = '';
+      document.getElementById('semId').value = '';
+      showAlert('danger', 'Cache sesi berhasil dibersihkan.');
+    }
+
+    function showAlert(type, message) {
+      const container = document.getElementById('alertContainer');
+      const icon = type === 'danger' ? 'fa-circle-exclamation' : 'fa-circle-info';
+      container.innerHTML = `<div class="alert alert-${type}"><i class="fa-solid ${icon}"></i><div>${message}</div></div>`;
+    }
+
+    function clearAlert() { document.getElementById('alertContainer').innerHTML = ''; }
+
+    function extractYearFromNIM(nim) {
+      if (!nim || nim.length < 2) return null;
+      const yearYY = parseInt(nim.substring(0, 2));
+      if (isNaN(yearYY)) return null;
+      return 2000 + yearYY;
+    }
+
+    function getGradeWeight(letter) {
+      if (!letter) return 0;
+      const clean = letter.toUpperCase().trim();
+      return GRADE_WEIGHTS[clean] !== undefined ? GRADE_WEIGHTS[clean] : 0;
+    }
+
+    function formatSemesterText(semId) {
+      if (!semId || semId.length < 5) return semId;
+      const year = semId.substring(0, 4);
+      const code = semId.substring(4);
+      let term = '';
+      if (code === '1') term = 'Ganjil';
+      else if (code === '2') term = 'Genap';
+      else if (code === '3') term = 'Pendek / Antara';
+      else term = `Term ${code}`;
+      return `${term} ${year}`;
+    }
+
+    function setLoading(isLoading, message = 'Memproses request...') {
+      const loader = document.getElementById('pageLoader');
+      const emptyState = document.getElementById('emptyState');
+      const resultContent = document.getElementById('resultContent');
+      document.getElementById('loaderMessage').textContent = message;
+      if (isLoading) {
+        loader.style.display = 'flex';
+        emptyState.style.display = 'none';
+        resultContent.style.display = 'none';
+      } else { loader.style.display = 'none'; }
+    }
+
+    function getInputValues() {
+      const token = document.getElementById('bearerToken').value.trim();
+      const nim = document.getElementById('mhsNim').value.trim();
+      const semId = document.getElementById('semId').value.trim();
+
+      if (!token || !nim || !semId) {
+        showAlert('danger', 'Harap lengkapi semua kolom input konfigurasi data!');
+        return null;
+      }
+      saveConfig(token, nim, semId);
+      return { token, nim, semId };
+    }
+
+    function setKHSHeaders() {
+      document.getElementById('gradesTableHead').innerHTML = `
+        <tr>
+          <th style="width: 50px;">No</th>
+          <th style="width: 120px;">Kode MK</th>
+          <th>Nama Mata Kuliah</th>
+          <th style="width: 70px; text-align: center;">SKS</th>
+          <th style="width: 100px; text-align: center;">Nilai Angka</th>
+          <th style="width: 100px; text-align: center;">Nilai Huruf</th>
+          <th style="width: 80px; text-align: center;">Bobot</th>
+        </tr>
+      `;
+    }
+
+    async function fetchNamaMahasiswa(token, nim) {
+      try {
+        const response = await fetch(`${BACKEND_URL_MHS}?nim=${nim}`, {
+          method: 'GET',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!response.ok) return "Nama Tidak Ditemukan";
+        const json = await response.json();
+        if (json.code === 200 && json.data && json.data.mhsNama) {
+          return json.data.mhsNama;
+        }
+        return "Nama Tidak Ditemukan";
+      } catch (e) {
+        return "Nama Tidak Ditemukan";
+      }
+    }
+
+    function renderStudentMeta(nim, nama, targetSemester, typeReport) {
+      const year = extractYearFromNIM(nim);
+      document.getElementById('metaNama').textContent = nama;
+      document.getElementById('metaNim').textContent = nim;
+      document.getElementById('metaAngkatan').textContent = year ? `${year} (${nim.substring(0, 2)})` : '-';
+      document.getElementById('metaTipeLaporan').textContent = typeReport;
+      document.getElementById('metaSemesterTarget').textContent = formatSemesterText(targetSemester);
+      document.getElementById('studentMetaBlock').style.display = 'block';
+    }
+
+    async function fetchKHSFromProxy(token, nim, semId) {
+      try {
+        const response = await fetch(`${BACKEND_URL_KHS}?nim=${nim}&semId=${semId}`, {
+          method: 'GET',
+          headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/json' }
+        });
+        if (!response.ok) return { data: [], info: null };
+        return await response.json();
+      } catch (err) {
+        return { data: [], info: null };
+      }
+    }
+
+    async function fetchSingleSemester() {
+      clearAlert();
+      const inputs = getInputValues();
+      if (!inputs) return;
+
+      setLoading(true, `Mengidentifikasi data mahasiswa...`);
+      setKHSHeaders();
+
+      const fetchedNama = await fetchNamaMahasiswa(inputs.token, inputs.nim);
+
+      document.getElementById('loaderMessage').textContent = `Mengambil KHS Semester ${inputs.semId}...`;
+      const result = await fetchKHSFromProxy(inputs.token, inputs.nim, inputs.semId);
+
+      setLoading(false);
+
+      const courses = result.data || [];
+      const info = result.info || {};
+
+      if (courses.length === 0) {
+        showAlert('danger', `Data KHS untuk semester ${inputs.semId} tidak ditemukan atau token tidak valid.`);
+        document.getElementById('emptyState').style.display = 'flex';
+        document.getElementById('studentMetaBlock').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('printReportTitle').textContent = 'KARTU HASIL STUDI (KHS) SEMESTER';
+      renderStudentMeta(inputs.nim, fetchedNama, inputs.semId, 'KHS Semester Tunggal');
+
+      let sksDiambil = info.sksDiambil || info.totalSks || 0;
+      let ipSemester = info.ipSemester || info.ipSem || 0;
+
+      if (!sksDiambil || !ipSemester) {
+        let totalSks = 0; let totalBobotXSkS = 0;
+        courses.forEach(c => {
+          const sks = parseInt(c.vmktwkrsJumlahSksKrs || 0);
+          const valHuruf = c.krsdtKodeNilai || '';
+          const bobot = c.bobot !== undefined ? parseFloat(c.bobot) : getGradeWeight(valHuruf);
+          totalSks += sks; totalBobotXSkS += (sks * bobot);
+        });
+        sksDiambil = totalSks;
+        ipSemester = totalSks > 0 ? (totalBobotXSkS / totalSks) : 0;
+      }
+
+      const summaryGrid = document.getElementById('summaryGrid');
+      summaryGrid.innerHTML = `
+        <div class="summary-card"><div class="summary-icon"><i class="fa-solid fa-graduation-cap"></i></div><div class="summary-info"><h3>SKS DIAMPIL</h3><p>${sksDiambil}</p></div></div>
+        <div class="summary-card"><div class="summary-icon orange"><i class="fa-solid fa-chart-line"></i></div><div class="summary-info"><h3>IP SEMESTER (IPS)</h3><p>${parseFloat(ipSemester).toFixed(2)}</p></div></div>
+        <div class="summary-card"><div class="summary-icon"><i class="fa-solid fa-book"></i></div><div class="summary-info"><h3>TOTAL MATAKULIAH</h3><p>${courses.length}</p></div></div>`;
+
+      renderGradesTable(courses);
+      document.getElementById('resultContent').style.display = 'block';
+    }
+
+    async function generateTranscript() {
+      clearAlert();
+      const inputs = getInputValues();
+      if (!inputs) return;
+
+      const entryYear = extractYearFromNIM(inputs.nim);
+      if (!entryYear) { showAlert('danger', 'NIM tidak valid!'); return; }
+
+      const targetSem = parseInt(inputs.semId);
+      const targetYear = Math.floor(targetSem / 10);
+      if (isNaN(targetSem) || targetSem < 10000) { showAlert('danger', 'Kode Semester Target tidak valid!'); return; }
+
+      const semCodes = [];
+      for (let year = entryYear; year <= targetYear; year++) {
+        for (let sem = 1; sem <= 3; sem++) {
+          const code = year * 10 + sem;
+          if (code <= targetSem) semCodes.push(code.toString());
+        }
+      }
+
+      if (semCodes.length === 0) return;
+
+      setLoading(true, `Mengidentifikasi data mahasiswa...`);
+      setKHSHeaders();
+      const fetchedNama = await fetchNamaMahasiswa(inputs.token, inputs.nim);
+
+      document.getElementById('loaderMessage').textContent = `Menarik data untuk ${semCodes.length} semester...`;
+
+      try {
+        const promises = semCodes.map(code => fetchKHSFromProxy(inputs.token, inputs.nim, code));
+        const results = await Promise.all(promises);
+
+        let rawCourses = []; let fetchedSemestersCount = 0;
+        results.forEach((res, index) => {
+          const list = res.data || [];
+          if (list.length > 0) {
+            fetchedSemestersCount++;
+            list.forEach(c => c._semester = semCodes[index]);
+            rawCourses = rawCourses.concat(list);
+          }
+        });
+
+        if (rawCourses.length === 0) {
+          setLoading(false); showAlert('danger', `Tidak ditemukan data mata kuliah apapun.`); return;
+        }
+
+        const courseMap = {};
+        rawCourses.forEach(course => {
+          const code = (course.vmktwkrsMkkurKode || '').trim();
+          if (!code) return;
+          const valAngka = parseFloat(course.krsdtNilaiAngka !== undefined ? course.krsdtNilaiAngka : 0) || 0;
+          const letter = (course.krsdtKodeNilai || '').trim();
+          const weight = getGradeWeight(letter);
+          const priorityScore = (weight * 1000) + valAngka;
+          if (!courseMap[code] || priorityScore > courseMap[code].priorityScore) { courseMap[code] = { course, priorityScore }; }
+        });
+
+        const deduplicatedCourses = Object.values(courseMap).map(item => item.course);
+        let totalSksTranskrip = 0; let totalBobotTranskrip = 0; let totalSksLulus = 0;
+
+        deduplicatedCourses.forEach(c => {
+          const sks = parseInt(c.vmktwkrsJumlahSksKrs || 0);
+          const letter = (c.krsdtKodeNilai || '').trim().toUpperCase();
+          const weight = getGradeWeight(letter);
+          totalSksTranskrip += sks; totalBobotTranskrip += (sks * weight);
+          if (letter !== 'E' && letter !== '' && weight > 0) totalSksLulus += sks;
+        });
+
+        const ipk = totalSksTranskrip > 0 ? (totalBobotTranskrip / totalSksTranskrip) : 0;
+        document.getElementById('printReportTitle').textContent = 'TRANSKRIP AKADEMIK KUMULATIF';
+
+        renderStudentMeta(inputs.nim, fetchedNama, inputs.semId, 'Transkrip Kumulatif Lengkap');
+
+        const summaryGrid = document.getElementById('summaryGrid');
+        summaryGrid.innerHTML = `
+          <div class="summary-card"><div class="summary-icon"><i class="fa-solid fa-graduation-cap"></i></div><div class="summary-info"><h3>TOTAL SKS TRANSKRIP</h3><p>${totalSksTranskrip}</p></div></div>
+          <div class="summary-card"><div class="summary-icon orange"><i class="fa-solid fa-chart-line"></i></div><div class="summary-info"><h3>IP KUMULATIF (IPK)</h3><p>${ipk.toFixed(2)}</p></div></div>
+          <div class="summary-card"><div class="summary-icon"><i class="fa-solid fa-award"></i></div><div class="summary-info"><h3>SKS LULUS</h3><p>${totalSksLulus}</p></div></div>`;
+
+        renderGradesTable(deduplicatedCourses);
+        setLoading(false);
+        document.getElementById('resultContent').style.display = 'block';
+
+      } catch (err) {
+        setLoading(false); showAlert('danger', `Terjadi kegagalan saat menyusun transkrip: ${err.message}`);
+      }
+    }
+
+    function renderGradesTable(courses) {
+      const tbody = document.getElementById('gradesTableBody');
+      tbody.innerHTML = '';
+
+      courses.forEach((item, index) => {
+        const tr = document.createElement('tr');
+
+        const code = item.vmktwkrsMkkurKode || '-';
+        const name = item.vmktwkrsMkkurNamaResmi || '-';
+        const sks = parseInt(item.vmktwkrsJumlahSksKrs || 0);
+        const score = item.krsdtNilaiAngka !== undefined ? item.krsdtNilaiAngka : '-';
+        const letter = (item.krsdtKodeNilai || '-').toUpperCase().trim();
+        const weight = getGradeWeight(letter);
+
+        const isLowGrade = letter === 'E' || letter === 'D';
+        const badgeClass = isLowGrade ? 'badge-grade-low' : 'badge-grade';
+
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td><strong>${code}</strong></td>
+          <td>${name}</td>
+          <td style="text-align: center;">${sks}</td>
+          <td style="text-align: center;">${score}</td>
+          <td style="text-align: center;"><span class="badge ${badgeClass}">${letter}</span></td>
+          <td style="text-align: center;">${(sks * weight).toFixed(2)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // ==========================================
+    // ACTION 3: GENERATE LEADERBOARD 2024
+    // ==========================================
+    function generateAllNIMList() {
+      let list = [];
+      for (let i = 1; i <= 18; i++) list.push("2411521" + i.toString().padStart(3, '0'));
+      for (let i = 1; i <= 41; i++) list.push("2411522" + i.toString().padStart(3, '0'));
+      for (let i = 1; i <= 41; i++) list.push("2411523" + i.toString().padStart(3, '0'));
+      list.push("2411527001", "2411529001");
+      return list;
+    }
+
+    async function generateLeaderboard() {
+      clearAlert();
+      const token = document.getElementById('bearerToken').value.trim();
+      const semTarget = document.getElementById('semId').value.trim() || "20252";
+
+      if (!token) {
+        showAlert('danger', 'Harap masukkan Bearer Token terlebih dahulu!');
+        return;
+      }
+
+      const nimList = generateAllNIMList();
+      let leaderboard = [];
+
+      setLoading(true, `Sedang menarik data mahasiswa... (Sistem menarik data satu per satu agar tidak diblokir kampus, mohon tunggu)`);
+
+      // MENGGUNAKAN LOOPING SEKUENSIAL AGAR AMAN DARI BLOKIR SERVER KAMPUS
+      for (let i = 0; i < nimList.length; i++) {
+        const nim = nimList[i];
+        document.getElementById('loaderMessage').textContent = `Menarik data ${i + 1} dari ${nimList.length} (NIM: ${nim})...`;
+
+        try {
+          const res = await fetchKHSFromProxy(token, nim, semTarget);
+          if (res && res.info && res.info.ipIp) {
+            const ipk = parseFloat(res.info.ipIp);
+            if (ipk > 0) {
+              const nama = await fetchNamaMahasiswa(token, nim);
+              leaderboard.push({ nama, nim, ipk });
+            }
+          }
+        } catch (err) {
+          console.error(`Gagal memproses NIM ${nim}`, err);
+        }
+      }
+
+      // Urutkan IPK dari terbesar ke terkecil
+      leaderboard.sort((a, b) => b.ipk - a.ipk);
+
+      // Ubah Header Tabel khusus untuk Leaderboard
+      document.getElementById('gradesTableHead').innerHTML = `
+          <tr>
+            <th style="width: 50px;">Rank</th>
+            <th style="width: 150px;">NIM</th>
+            <th>Nama Mahasiswa</th>
+            <th style="width: 100px; text-align: center;">IP Kumulatif</th>
+          </tr>
+        `;
+
+      // Render Body Tabel
+      const tbody = document.getElementById('gradesTableBody');
+      tbody.innerHTML = leaderboard.map((item, idx) => `
+            <tr>
+                <td>${idx + 1}</td>
+                <td><strong>${item.nim}</strong></td>
+                <td>${item.nama}</td>
+                <td style="text-align: center;"><strong>${item.ipk.toFixed(2)}</strong></td>
+            </tr>
+        `).join('');
+
+      // Sembunyikan Meta & Summary Card untuk mode Leaderboard
+      document.getElementById('printReportTitle').textContent = 'LEADERBOARD IPK ANGKATAN 2024';
+      document.getElementById('studentMetaBlock').style.display = 'none';
+      document.getElementById('summaryGrid').innerHTML = '';
+
+      document.getElementById('resultContent').style.display = 'block';
+      setLoading(false);
+
+      if (leaderboard.length === 0) {
+        showAlert('danger', 'Tidak ada satupun data yang berhasil ditarik. Token mungkin kadaluarsa.');
+      } else {
+        showAlert('info', `Ranking berhasil di-generate untuk ${leaderboard.length} mahasiswa dari total ${nimList.length} daftar NIM.`);
+      }
+    }
+  </script>
+  <!-- Eruda Mobile DevTools (Aktif di layar HP untuk inspect network/token) -->
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>
+    if (/Mobile|Android|iP(hone|od|ad)/i.test(navigator.userAgent) || window.location.search.includes('debug=true')) {
+      eruda.init();
+    }
+  </script>
+</body>
+
+</html>
